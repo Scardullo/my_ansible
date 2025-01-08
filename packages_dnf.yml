@@ -1,0 +1,39 @@
+---
+
+- hosts: dnf
+  become: true
+
+  tasks:
+  - name: Install packages
+    dnf:
+      name:
+        - htop
+        - fastfetch
+        - screenfetch
+        - bat
+        - httpd
+        - ncdu
+        - duf
+        - bpytop
+        - plocate
+        - snapd
+        - postgresql
+        - postgresql-server
+
+  - name: Start httpd
+    service:
+      name: httpd
+      state: started
+      enabled: true
+
+  - name: Start snapd
+    service:
+      name: snapd.service
+      state: started
+      enabled: true
+
+  - name: Install speedtest
+    snap:
+      name:
+        - speedtest
+
