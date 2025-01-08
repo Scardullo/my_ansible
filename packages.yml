@@ -1,0 +1,39 @@
+---
+
+- hosts: all
+  become: true
+
+  tasks:
+  - name: Install packages
+    apt:
+      name:
+        - htop
+        - neofetch
+        - screenfetch
+        - bat
+        - apache2
+        - docker.io
+        - ncdu
+        - duf
+        - bpytop
+        - plocate
+        - snapd
+        - postgresql
+
+  - name: Start apache2
+    service:
+      name: apache2
+      state: started
+      enabled: true
+
+  - name: Start snapd
+    service:
+      name: snapd.service
+      state: started
+      enabled: true
+
+  - name: Install speedtest
+    snap:
+      name:
+        - speedtest
+
